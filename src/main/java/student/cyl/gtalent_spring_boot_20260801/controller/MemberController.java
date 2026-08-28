@@ -22,7 +22,6 @@ import student.cyl.gtalent_spring_boot_20260801.service.MemberService;
 
 import student.cyl.gtalent_spring_boot_20260801.request.MemberLoginRequest;
 import student.cyl.gtalent_spring_boot_20260801.request.TokenLogoutRequest;
-import student.cyl.gtalent_spring_boot_20260801.request.TokenRefreshRequest;
 
 @RestController
 @RequestMapping("/members")
@@ -78,12 +77,6 @@ public class MemberController {
     @ResponseStatus(HttpStatus.OK)
     public TokenResponse login(@Valid @RequestBody MemberLoginRequest request) {
         return memberService.login(request);
-    }
-
-    @PostMapping("/refresh")
-    @ResponseStatus(HttpStatus.OK)
-    public TokenResponse refresh(@Valid @RequestBody TokenRefreshRequest request) {
-        return memberService.refresh(request.getRefreshToken());
     }
 
     @PostMapping("/logout")
