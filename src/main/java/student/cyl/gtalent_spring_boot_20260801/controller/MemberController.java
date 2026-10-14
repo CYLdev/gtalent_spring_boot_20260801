@@ -15,6 +15,9 @@ import jakarta.validation.Valid;
 import student.cyl.gtalent_spring_boot_20260801.request.MemberPasswordUpdateRequest;
 import student.cyl.gtalent_spring_boot_20260801.request.MemberProfileUpdateRequest;
 import student.cyl.gtalent_spring_boot_20260801.request.MemberRegisterRequest;
+import student.cyl.gtalent_spring_boot_20260801.request.MemberForgotPasswordRequest;
+import student.cyl.gtalent_spring_boot_20260801.request.MemberPasswordResetRequest;
+
 import student.cyl.gtalent_spring_boot_20260801.response.ApiResponse;
 import student.cyl.gtalent_spring_boot_20260801.response.MemberResponse;
 import student.cyl.gtalent_spring_boot_20260801.response.TokenResponse;
@@ -88,4 +91,20 @@ public class MemberController {
 
     // 課後練習:
     // 1. get members 取得所有會員 且 做分頁功能
+
+
+    @PostMapping("/forgot-password")
+    @ResponseStatus(HttpStatus.OK)
+    public ApiResponse forgotPassword(@Valid @RequestBody MemberForgotPasswordRequest request) {
+        memberService.forgotPassword(request);
+        return new ApiResponse("若帳號存在，將寄送重設密碼信");
+    }
+
+    @PostMapping("/reset-password")
+    @ResponseStatus(HttpStatus.OK)
+    public ApiResponse resetPassword(@Valid @RequestBody MemberPasswordResetRequest request) {
+        memberService.resetPassword(request);
+        return new ApiResponse("密碼重設成功，請重新登入");
+    }
+
 }
